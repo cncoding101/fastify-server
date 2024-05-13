@@ -1,0 +1,11 @@
+### HTTP GET ping/pong route
+GET http://localhost:8080/ping
+
+### HTTP GET items route
+GET http://localhost:8080/items
+
+### HTTP GET items by id route
+GET http://localhost:8080/items/1
+
+### HTTP GET static file
+GET http://localhost:8080/static/wcs/hello.js

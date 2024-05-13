@@ -1,0 +1,21 @@
+{
+  "extends": "./tsconfig.json",
+  "include": ["src/wcs/*.ts"],
+  "compilerOptions": {
+    "pretty": true,
+    "target": "ES2015",
+    "module": "ES2015",
+    "importHelpers": false,
+    "outDir": "src/static",
+    "sourceMap": false,
+    "strict": false
+  },
+  "tsc-alias": {
+    "verbose": false,
+    "resolveFullPaths": true,
+    "fileExtensions": {
+      "inputGlob": "{js,jsx,mjs}",
+      "outputCheck": ["js", "json", "jsx", "mjs"]
+    }
+  }
+}
