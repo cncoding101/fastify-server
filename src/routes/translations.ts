@@ -5,6 +5,10 @@ const routes: FastifyPluginCallback = (server, options, done) => {
     return {};
   });
 
+  server.get("/", async (req, res) => {
+    return {};
+  });
+
   done();
 };
 

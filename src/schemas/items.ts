@@ -1,8 +1,30 @@
 import { Static, Type } from "@sinclair/typebox";
 
-export const Item = Type.Object({
+const item = Type.Object({
   id: Type.Number(),
-  name: Type.String(),
+  itemName: Type.String(),
+  description: Type.Optional(Type.String()),
 });
 
-export type ItemType = Static<typeof Item>;
+export const getSchema = {
+  response: {
+    200: Type.Object({
+      message: Type.String(),
+      data: Type.Optional(Type.Array(item)),
+    }),
+  },
+};
+
+export const getByIdSchema = {
+  params: Type.Object({
+    id: Type.Number(),
+  }),
+  response: {
+    200: Type.Object({
+      message: Type.String(),
+      data: Type.Optional(item),
+    }),
+  },
+};
+
+export type ItemType = Static<typeof item>;

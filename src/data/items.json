@@ -1,7 +1,8 @@
 [
   {
     "id": 1,
-    "name": "Item one"
+    "name": "Item one",
+    "description": "hello"
   },
   {
     "id": 2,

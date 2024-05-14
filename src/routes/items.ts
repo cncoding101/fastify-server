@@ -1,24 +1,10 @@
-import { FastifyPluginCallback } from "fastify";
-import items from "../data/items.json";
-import { ItemType } from "../schemas/items";
+import { FastifyPluginAsyncTypebox } from "@fastify/type-provider-typebox";
+import { itemController } from "@/controllers";
+import { getByIdSchema, getSchema } from "@/schemas/items";
 
-const routes: FastifyPluginCallback = (server, options, done) => {
-  server.get("/items", async (req, res) => {
-    return items;
-  });
-
-  server.get<{ Params: { id: number }; Reply: ItemType | null }>(
-    "/:id",
-    async (req, res) => {
-      const { id } = req.params;
-
-      const item = items.find((x) => x.id == id);
-
-      return item ?? null;
-    }
-  );
-
-  done();
+const routes: FastifyPluginAsyncTypebox = async (server, options) => {
+  server.get("/", { schema: getSchema }, itemController.get);
+  server.get("/:id", { schema: getByIdSchema }, itemController.getById);
 };
 
 export default routes;
