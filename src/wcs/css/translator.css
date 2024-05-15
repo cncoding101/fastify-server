@@ -1,0 +1,66 @@
+label {
+  font-weight: 300;
+  color: #797878;
+  text-transform: uppercase;
+}
+
+.container {
+  margin: 20px;
+}
+
+.title {
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #797878;
+}
+
+.flex-space {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.select-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.select-group select {
+  padding: 4px;
+  border-radius: 5px;
+  border: 1px solid #797878;
+}
+
+#text-area,
+#translation {
+  resize: none;
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  border: 1px solid #797878;
+  border-radius: 5px;
+}
+
+#submit-btn {
+  padding: 10px;
+  background-color: #797878;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 0.83rem;
+}
+
+#submit-btn:hover {
+  color: #797878;
+  background-color: white;
+  border: 1px solid #797878;
+}
+
+#text-area:focus-within,
+#from-languages:focus-within,
+#to-languages:focus-within {
+  outline: none;
+}

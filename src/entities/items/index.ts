@@ -1,4 +1,4 @@
-import { ItemType } from "@/schemas/items";
+import { Item } from "@/schemas/items";
 
 export interface IData {
   id: number;
@@ -8,7 +8,7 @@ export interface IData {
 
 export type IOutgoing = Omit<IData, "id">;
 
-const outgoing = (data: IData) => {
+const outgoing = (data: IData): Item => {
   const { id, name, description } = data;
 
   return Object.freeze({ id, itemName: name, description });

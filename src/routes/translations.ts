@@ -1,13 +1,14 @@
 import { FastifyPluginCallback } from "fastify";
+import { translationController } from "@/controllers";
+import { postSchema, getLangSchema } from "@/schemas/translations";
 
 const routes: FastifyPluginCallback = (server, options, done) => {
-  server.post("/", async (req, res) => {
-    return {};
-  });
-
-  server.get("/", async (req, res) => {
-    return {};
-  });
+  server.post("/", { schema: postSchema }, translationController.post);
+  server.get(
+    "/languages",
+    { schema: getLangSchema },
+    translationController.getLang
+  );
 
   done();
 };

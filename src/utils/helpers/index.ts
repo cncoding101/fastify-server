@@ -1,10 +1,7 @@
-import { HelloWorld } from "@/common/interfaces";
-
-const helper = () => {
-  const b: HelloWorld = {
-    id: "hello",
-  };
-  console.log("helping the world");
+const enumValues = <T>(enumeration: Record<string, any>): T[] => {
+  return Object.values(enumeration).filter(
+    (value) => typeof value === "string"
+  ) as T[];
 };
 
-export { helper };
+export { enumValues };

@@ -1,4 +1,4 @@
-import { Type, TypeBoxTypeProvider } from "@fastify/type-provider-typebox";
+import { TypeBoxTypeProvider } from "@fastify/type-provider-typebox";
 import fastify from "fastify";
 import cors from "@fastify/cors";
 import helmet from "@fastify/helmet";
@@ -15,7 +15,29 @@ const startServer = async () => {
       logger: true,
     }).withTypeProvider<TypeBoxTypeProvider>();
     server.register(cors);
-    server.register(helmet);
+    server.register(helmet, { crossOriginResourcePolicy: false });
+    server.register(import("@fastify/swagger"));
+    server.register(import("@fastify/swagger-ui"), {
+      routePrefix: "/documentation",
+      uiConfig: {
+        docExpansion: "full",
+        deepLinking: false,
+      },
+      uiHooks: {
+        onRequest: function (request, reply, next) {
+          next();
+        },
+        preHandler: function (request, reply, next) {
+          next();
+        },
+      },
+      staticCSP: true,
+      transformStaticCSP: (header) => header,
+      transformSpecification: (swaggerObject, request, reply) => {
+        return swaggerObject;
+      },
+      transformSpecificationClone: true,
+    });
     server.register(import("@fastify/static"), {
       root: path.join(__dirname, path.join("static")),
       prefix: "/static/",
@@ -32,6 +54,7 @@ const startServer = async () => {
     });
 
     await server.listen({ port });
+    server.swagger();
   } catch (err) {
     console.error(err);
   }

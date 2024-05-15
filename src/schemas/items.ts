@@ -27,4 +27,4 @@ export const getByIdSchema = {
   },
 };
 
-export type ItemType = Static<typeof item>;
+export type Item = Static<typeof item>;

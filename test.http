@@ -9,3 +9,18 @@ GET http://localhost:8080/items/1
 
 ### HTTP GET static file
 GET http://localhost:8080/static/wcs/hello.js
+
+### HTTP GET translation language enums
+GET http://localhost:8080/translations/languages
+
+### HTTP POST translation
+POST http://localhost:8080/translations
+Content-Type: application/json
+
+{
+    "lang": {
+        "from": "ENG",
+        "to": "DE"
+    },
+    "text": "What a nice translator!"
+}
