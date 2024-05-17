@@ -1,8 +1,11 @@
-fetch("http://localhost:8080/static/html/translator.html")
+import "./icon"; // can not use path alias due to tsconfig
+import "@/utils/constants/status-code"; // must use path alias to get correct path when transpiled
+
+fetch("http://localhost:8080/static/v2/wcs/translator/index.html")
   .then((stream) => stream.text())
   .then((text) => define(text));
 
-console.log("hello world! 123");
+console.log("hello world 123!");
 
 const define = (html: string): void => {
   class Translator extends HTMLElement {

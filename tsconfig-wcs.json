@@ -11,7 +11,7 @@
     "strict": false
   },
   "tsc-alias": {
-    "verbose": false,
+    "verbose": true,
     "resolveFullPaths": true,
     "fileExtensions": {
       "inputGlob": "{js,jsx,mjs}",

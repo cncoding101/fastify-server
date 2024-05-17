@@ -41,16 +41,16 @@ const startServer = async () => {
       transformSpecificationClone: true,
     });
 
-    server.register((instance, opts, next) => {
-      instance;
-      server.register(fastifyStatic, {
-        root: path.join(__dirname, path.join("static")),
-        prefix: "/static/",
-      });
+    // server.register((instance, opts, next) => {
+    //   instance;
+    //   server.register(fastifyStatic, {
+    //     root: path.join(__dirname, path.join("static")),
+    //     prefix: "/static/",
+    //   });
 
-      // here `reply.sendFile` refers to 'static' files
-      next();
-    });
+    //   // here `reply.sendFile` refers to 'static' files
+    //   next();
+    // });
 
     server.register((instance, opts, next) => {
       instance;
