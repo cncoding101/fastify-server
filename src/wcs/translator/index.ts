@@ -2,6 +2,8 @@ fetch("http://localhost:8080/static/html/translator.html")
   .then((stream) => stream.text())
   .then((text) => define(text));
 
+console.log("hello world! 123");
+
 const define = (html: string): void => {
   class Translator extends HTMLElement {
     languages = {

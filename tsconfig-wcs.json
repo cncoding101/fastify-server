@@ -1,12 +1,12 @@
 {
   "extends": "./tsconfig.json",
-  "include": ["src/wcs/*.ts"],
+  "include": ["src/wcs/**/*.ts"],
   "compilerOptions": {
     "pretty": true,
     "target": "ES2015",
     "module": "ES2015",
     "importHelpers": false,
-    "outDir": "src/static",
+    "outDir": "dist/static",
     "sourceMap": false,
     "strict": false
   },

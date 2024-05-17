@@ -1,5 +1,6 @@
 import { TypeBoxTypeProvider } from "@fastify/type-provider-typebox";
-import fastify from "fastify";
+import fastify, { FastifyRequest } from "fastify";
+import fastifyStatic from "@fastify/static";
 import cors from "@fastify/cors";
 import helmet from "@fastify/helmet";
 import path from "path";
@@ -14,6 +15,7 @@ const startServer = async () => {
     const server = fastify({
       logger: true,
     }).withTypeProvider<TypeBoxTypeProvider>();
+
     server.register(cors);
     server.register(helmet, { crossOriginResourcePolicy: false });
     server.register(import("@fastify/swagger"));
@@ -38,9 +40,27 @@ const startServer = async () => {
       },
       transformSpecificationClone: true,
     });
-    server.register(import("@fastify/static"), {
-      root: path.join(__dirname, path.join("static")),
-      prefix: "/static/",
+
+    server.register((instance, opts, next) => {
+      instance;
+      server.register(fastifyStatic, {
+        root: path.join(__dirname, path.join("static")),
+        prefix: "/static/",
+      });
+
+      // here `reply.sendFile` refers to 'static' files
+      next();
+    });
+
+    server.register((instance, opts, next) => {
+      instance;
+      server.register(fastifyStatic, {
+        root: path.join(__dirname, path.join("../dist/static")),
+        prefix: "/static/v2",
+      });
+
+      // here `reply.sendFile` refers to 'dist static' files
+      next();
     });
 
     server.register(itemRoutes, { prefix: "/items" });
